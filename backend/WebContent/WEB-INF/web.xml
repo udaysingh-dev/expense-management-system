@@ -1,0 +1,9 @@
+<servlet>
+  <servlet-name>addExpense</servlet-name>
+  <servlet-class>controller.AddExpenseServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>addExpense</servlet-name>
+  <url-pattern>/addExpense</url-pattern>
+</servlet-mapping>
