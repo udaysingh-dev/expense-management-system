@@ -19,4 +19,4 @@ A full-stack web application to manage daily expenses.
 - database/ → SQL scripts
 
 ## Author
-Avantika Singh
+Avantika Shukla
