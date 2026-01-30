@@ -255,3 +255,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// Update dark mode toggle icon
+function updateDarkModeIcon(isDarkMode) {
+  const toggleIcon = document.getElementById('toggleIcon');
+  if (isDarkMode) {
+    toggleIcon.innerHTML = '<i class="fas fa-sun"></i>';
+    toggleIcon.setAttribute('title', 'Switch to light mode');
+  } else {
+    toggleIcon.innerHTML = '<i class="fas fa-moon"></i>';
+    toggleIcon.setAttribute('title', 'Switch to dark mode');
+  }
+}
+
+// Update password visibility icon
+function updatePasswordToggleIcon(isVisible) {
+  const toggleEye = document.getElementById('toggleEye');
+  if (isVisible) {
+    toggleEye.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    toggleEye.setAttribute('title', 'Hide password');
+  } else {
+    toggleEye.innerHTML = '<i class="fas fa-eye"></i>';
+    toggleEye.setAttribute('title', 'Show password');
+  }
+}

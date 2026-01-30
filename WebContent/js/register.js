@@ -2,7 +2,7 @@
 // REGISTER PAGE - UI INTERACTIONS
 // ============================================
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   initializeDarkMode();
   initializePasswordToggles();
   initializePasswordStrength();
@@ -18,21 +18,21 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeDarkMode() {
   const darkModeToggle = document.getElementById('darkModeToggle');
   const toggleIcon = document.getElementById('toggleIcon');
-  
+
   // Load saved preference (separate from dashboard and login)
   const savedMode = localStorage.getItem('registerDarkMode');
   const isDarkMode = savedMode === 'true';
-  
+
   if (isDarkMode) {
     document.body.classList.add('register-dark');
     toggleIcon.textContent = '☀️';
   }
-  
+
   // Toggle dark mode
   if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', function() {
+    darkModeToggle.addEventListener('click', function () {
       const isDark = document.body.classList.contains('register-dark');
-      
+
       if (isDark) {
         document.body.classList.remove('register-dark');
         toggleIcon.textContent = '🌙';
@@ -54,16 +54,16 @@ function initializePasswordToggles() {
   const passwordToggle = document.getElementById('passwordToggle');
   const passwordInput = document.getElementById('password');
   const toggleEye = document.getElementById('toggleEye');
-  
+
   const confirmPasswordToggle = document.getElementById('confirmPasswordToggle');
   const confirmPasswordInput = document.getElementById('confirmPassword');
   const confirmToggleEye = document.getElementById('confirmToggleEye');
-  
+
   // Password toggle
   if (passwordToggle && passwordInput) {
-    passwordToggle.addEventListener('click', function() {
+    passwordToggle.addEventListener('click', function () {
       const isPassword = passwordInput.type === 'password';
-      
+
       if (isPassword) {
         passwordInput.type = 'text';
         toggleEye.textContent = '🙈';
@@ -75,12 +75,12 @@ function initializePasswordToggles() {
       }
     });
   }
-  
+
   // Confirm password toggle
   if (confirmPasswordToggle && confirmPasswordInput) {
-    confirmPasswordToggle.addEventListener('click', function() {
+    confirmPasswordToggle.addEventListener('click', function () {
       const isPassword = confirmPasswordInput.type === 'password';
-      
+
       if (isPassword) {
         confirmPasswordInput.type = 'text';
         confirmToggleEye.textContent = '🙈';
@@ -103,23 +103,23 @@ function initializePasswordStrength() {
   const strengthIndicator = document.getElementById('passwordStrength');
   const strengthFill = document.getElementById('strengthFill');
   const strengthText = document.getElementById('strengthText');
-  
+
   if (passwordInput && strengthIndicator && strengthFill && strengthText) {
-    passwordInput.addEventListener('input', function() {
+    passwordInput.addEventListener('input', function () {
       const password = this.value;
-      
+
       if (password.length === 0) {
         strengthIndicator.classList.remove('show');
         return;
       }
-      
+
       strengthIndicator.classList.add('show');
       const strength = calculatePasswordStrength(password);
-      
+
       // Reset classes
       strengthFill.classList.remove('weak', 'medium', 'strong');
       strengthText.classList.remove('weak', 'medium', 'strong');
-      
+
       // Apply strength classes
       if (strength === 'weak') {
         strengthFill.classList.add('weak');
@@ -140,17 +140,17 @@ function initializePasswordStrength() {
 
 function calculatePasswordStrength(password) {
   let strength = 0;
-  
+
   // Length check
   if (password.length >= 8) strength++;
   if (password.length >= 12) strength++;
-  
+
   // Character variety checks
   if (/[a-z]/.test(password)) strength++;
   if (/[A-Z]/.test(password)) strength++;
   if (/[0-9]/.test(password)) strength++;
   if (/[^a-zA-Z0-9]/.test(password)) strength++;
-  
+
   if (strength <= 2) return 'weak';
   if (strength <= 4) return 'medium';
   return 'strong';
@@ -165,36 +165,36 @@ function initializeFormValidation() {
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
   const confirmPasswordInput = document.getElementById('confirmPassword');
-  
+
   const fullNameError = document.getElementById('fullNameError');
   const emailError = document.getElementById('emailError');
   const passwordError = document.getElementById('passwordError');
   const confirmPasswordError = document.getElementById('confirmPasswordError');
-  
+
   // Full Name validation
   if (fullNameInput) {
     fullNameInput.addEventListener('blur', validateFullName);
-    fullNameInput.addEventListener('input', function() {
+    fullNameInput.addEventListener('input', function () {
       if (this.classList.contains('error')) {
         validateFullName();
       }
     });
   }
-  
+
   // Email validation
   if (emailInput) {
     emailInput.addEventListener('blur', validateEmail);
-    emailInput.addEventListener('input', function() {
+    emailInput.addEventListener('input', function () {
       if (this.classList.contains('error')) {
         validateEmail();
       }
     });
   }
-  
+
   // Password validation
   if (passwordInput) {
     passwordInput.addEventListener('blur', validatePassword);
-    passwordInput.addEventListener('input', function() {
+    passwordInput.addEventListener('input', function () {
       if (this.classList.contains('error')) {
         validatePassword();
       }
@@ -204,20 +204,20 @@ function initializeFormValidation() {
       }
     });
   }
-  
+
   // Confirm Password validation
   if (confirmPasswordInput) {
     confirmPasswordInput.addEventListener('blur', validateConfirmPassword);
-    confirmPasswordInput.addEventListener('input', function() {
+    confirmPasswordInput.addEventListener('input', function () {
       if (this.classList.contains('error')) {
         validateConfirmPassword();
       }
     });
   }
-  
+
   function validateFullName() {
     const fullName = fullNameInput.value.trim();
-    
+
     if (!fullName) {
       showError(fullNameInput, fullNameError, 'Full name is required');
       return false;
@@ -230,11 +230,11 @@ function initializeFormValidation() {
       return true;
     }
   }
-  
+
   function validateEmail() {
     const email = emailInput.value.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
+
     if (!email) {
       showError(emailInput, emailError, 'Email is required');
       return false;
@@ -247,10 +247,10 @@ function initializeFormValidation() {
       return true;
     }
   }
-  
+
   function validatePassword() {
     const password = passwordInput.value;
-    
+
     if (!password) {
       showError(passwordInput, passwordError, 'Password is required');
       return false;
@@ -263,11 +263,11 @@ function initializeFormValidation() {
       return true;
     }
   }
-  
+
   function validateConfirmPassword() {
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
-    
+
     if (!confirmPassword) {
       showError(confirmPasswordInput, confirmPasswordError, 'Please confirm your password');
       return false;
@@ -280,7 +280,7 @@ function initializeFormValidation() {
       return true;
     }
   }
-  
+
   function showError(input, errorEl, message) {
     if (input) {
       input.classList.remove('success');
@@ -291,7 +291,7 @@ function initializeFormValidation() {
       errorEl.classList.add('show');
     }
   }
-  
+
   function hideError(input, errorEl) {
     if (input) {
       input.classList.remove('error');
@@ -313,18 +313,18 @@ function initializeFormState() {
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
   const confirmPasswordInput = document.getElementById('confirmPassword');
-  
+
   const inputs = [fullNameInput, emailInput, passwordInput, confirmPasswordInput];
-  
+
   inputs.forEach(input => {
     if (input) {
       input.addEventListener('input', checkFormState);
     }
   });
-  
+
   function checkFormState() {
     const allFilled = inputs.every(input => input && input.value.trim().length > 0);
-    
+
     if (registerButton) {
       registerButton.disabled = !allFilled;
     }
@@ -343,51 +343,51 @@ function initializeFormSubmit() {
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
   const confirmPasswordInput = document.getElementById('confirmPassword');
-  
+
   if (registerForm) {
-    registerForm.addEventListener('submit', function(e) {
+    registerForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      
+
       // Hide general error
       if (generalError) {
         generalError.style.display = 'none';
       }
-      
+
       // Validate all fields
       const fullNameValid = validateFullName();
       const emailValid = validateEmail();
       const passwordValid = validatePassword();
       const confirmPasswordValid = validateConfirmPassword();
-      
+
       if (!fullNameValid || !emailValid || !passwordValid || !confirmPasswordValid) {
         showGeneralError('Please fix the errors above');
         return;
       }
-      
+
       // Show loading state
       registerButton.classList.add('loading');
       registerButton.disabled = true;
       registerButton.querySelector('.button-loader').style.display = 'block';
-      
+
       // Simulate registration process (UI only - no actual backend)
-      setTimeout(function() {
+      setTimeout(function () {
         // Store user info (for demo purposes)
         const fullName = fullNameInput.value.trim();
         const email = emailInput.value.trim();
-        
+
         localStorage.setItem('username', fullName);
         localStorage.setItem('email', email);
-        
+
         // Redirect to login page
         window.location.href = 'login.html';
       }, 1500); // Simulate API call delay
     });
   }
-  
+
   function validateFullName() {
     const fullName = fullNameInput.value.trim();
     const fullNameError = document.getElementById('fullNameError');
-    
+
     if (!fullName) {
       showError(fullNameInput, fullNameError, 'Full name is required');
       return false;
@@ -399,12 +399,12 @@ function initializeFormSubmit() {
       return true;
     }
   }
-  
+
   function validateEmail() {
     const email = emailInput.value.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const emailError = document.getElementById('emailError');
-    
+
     if (!email) {
       showError(emailInput, emailError, 'Email is required');
       return false;
@@ -416,11 +416,11 @@ function initializeFormSubmit() {
       return true;
     }
   }
-  
+
   function validatePassword() {
     const password = passwordInput.value;
     const passwordError = document.getElementById('passwordError');
-    
+
     if (!password) {
       showError(passwordInput, passwordError, 'Password is required');
       return false;
@@ -432,12 +432,12 @@ function initializeFormSubmit() {
       return true;
     }
   }
-  
+
   function validateConfirmPassword() {
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
     const confirmPasswordError = document.getElementById('confirmPasswordError');
-    
+
     if (!confirmPassword) {
       showError(confirmPasswordInput, confirmPasswordError, 'Please confirm your password');
       return false;
@@ -449,7 +449,7 @@ function initializeFormSubmit() {
       return true;
     }
   }
-  
+
   function showError(input, errorEl, message) {
     input.classList.remove('success');
     input.classList.add('error');
@@ -458,7 +458,7 @@ function initializeFormSubmit() {
       errorEl.classList.add('show');
     }
   }
-  
+
   function hideError(input, errorEl) {
     input.classList.remove('error');
     if (errorEl) {
@@ -466,7 +466,7 @@ function initializeFormSubmit() {
       errorEl.classList.remove('show');
     }
   }
-  
+
   function showGeneralError(message) {
     if (generalError) {
       generalError.textContent = message;
@@ -474,3 +474,54 @@ function initializeFormSubmit() {
     }
   }
 }
+
+// Update dark mode toggle icon
+function updateDarkModeIcon(isDarkMode) {
+  const toggleIcon = document.getElementById('toggleIcon');
+  if (isDarkMode) {
+    toggleIcon.innerHTML = '<i class="fas fa-sun"></i>';
+    toggleIcon.setAttribute('title', 'Switch to light mode');
+  } else {
+    toggleIcon.innerHTML = '<i class="fas fa-moon"></i>';
+    toggleIcon.setAttribute('title', 'Switch to dark mode');
+  }
+}
+
+// Update password visibility icons
+function updatePasswordToggleIcon(toggleId, isVisible) {
+  const toggleEye = document.getElementById(toggleId);
+  if (isVisible) {
+    toggleEye.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    toggleEye.setAttribute('title', 'Hide password');
+  } else {
+    toggleEye.innerHTML = '<i class="fas fa-eye"></i>';
+    toggleEye.setAttribute('title', 'Show password');
+  }
+}
+
+// Password toggle functionality
+document.getElementById('passwordToggle').addEventListener('click', function () {
+  const passwordInput = document.getElementById('password');
+  const isPasswordVisible = passwordInput.type === 'text';
+  passwordInput.type = isPasswordVisible ? 'password' : 'text';
+  updatePasswordToggleIcon('toggleEye', !isPasswordVisible);
+});
+
+document.getElementById('confirmPasswordToggle').addEventListener('click', function () {
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+  const isPasswordVisible = confirmPasswordInput.type === 'text';
+  confirmPasswordInput.type = isPasswordVisible ? 'password' : 'text';
+  updatePasswordToggleIcon('confirmToggleEye', !isPasswordVisible);
+});
+
+// Initialize icons
+document.addEventListener('DOMContentLoaded', function () {
+  // Check dark mode preference
+  const isDarkMode = localStorage.getItem('darkMode') === 'true';
+  updateDarkModeIcon(isDarkMode);
+
+  // Apply dark mode if needed
+  if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+  }
+});

@@ -666,3 +666,80 @@ body {
     align-self: flex-end;
   }
 }
+
+/* Font Awesome icon styling */
+.logo-icon i,
+.input-icon i,
+.toggle-icon i,
+.toggle-eye i,
+.password-toggle i,
+.checkbox-custom i,
+.login-button i,
+.divider-text i,
+.register-link i {
+  font-size: 1em;
+  vertical-align: middle;
+}
+
+/* Logo icon */
+.logo-icon i {
+  font-size: 2.5em;
+  color: var(--primary-color);
+}
+
+/* Input icons */
+.input-icon i {
+  color: #666;
+  font-size: 1.1em;
+}
+
+/* Password toggle eye */
+.toggle-eye i {
+  font-size: 1.1em;
+  transition: color 0.3s;
+}
+
+.toggle-eye i:hover {
+  color: var(--primary-color);
+}
+
+/* Dark mode toggle */
+.toggle-icon i {
+  font-size: 1.2em;
+  transition: transform 0.3s;
+}
+
+/* Login button icon */
+.login-button i {
+  margin-right: 8px;
+  font-size: 1.1em;
+}
+
+/* Loading spinner */
+.loader-spinner i {
+  font-size: 1.2em;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Checkbox checkmark */
+.checkbox-custom i {
+  font-size: 0.8em;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.checkbox-label input:checked ~ .checkbox-custom i {
+  opacity: 1;
+}
+
+/* Register link icon */
+.register-link i {
+  margin-right: 5px;
+  font-size: 0.9em;
+}
