@@ -1,13 +1,13 @@
-package controller;
+package com.expense.controller;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.sql.Date;
+import javax.servlet.*;
+import javax.servlet.http.*;
 
-import dao.ExpenseDAO;
-import model.Expense;
-import model.User;
+import com.expense.dao.ExpenseDAO;
+import com.expense.model.Expence;
+import com.expense.model.User;
 
 public class AddExpenseServlet extends HttpServlet {
 
