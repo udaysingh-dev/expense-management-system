@@ -1,9 +1,21 @@
-<servlet>
-  <servlet-name>addExpense</servlet-name>
-  <servlet-class>controller.AddExpenseServlet</servlet-class>
-</servlet>
+<web-app>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.expense.controller.RegisterServlet</servlet-class>
+    </servlet>
 
-<servlet-mapping>
-  <servlet-name>addExpense</servlet-name>
-  <url-pattern>/addExpense</url-pattern>
-</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.expense.controller.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+</web-app>
